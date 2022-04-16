@@ -19,6 +19,23 @@ module.exports = {
       .catch((err) => res.status(500))
       .json(err);
   },
+  //Create a thought
+  createThought(req, res) {
+    Thought.create(req.body)
+      .then((thought) => {
+        return User.findOneAndUpdate(
+          { _id: req.body.userId },
+          { $push: { thought: thought._id } },
+          { new: true }
+        );
+      })
+      .then((thought) =>
+        !thought
+          ? res.status(404).json({ message: "" })
+          : res.json({ message: "Thought has been successfully created" })
+      )
+      .catch((err) => res.status(500).json(err));
+  },
   //Delete a thought
   deleteThought(req, res) {
     Thought.findOneAndDelete({ _id: req.params.thoughtId }).then(
