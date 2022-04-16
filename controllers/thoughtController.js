@@ -16,8 +16,7 @@ module.exports = {
           ? res.status(404).json({ message: "No Thoughts with that ID" })
           : res.json(thought)
       )
-      .catch((err) => res.status(500))
-      .json(err);
+      .catch((err) => res.status(500).json(err))
   },
   //Create a thought
   createThought(req, res) {
