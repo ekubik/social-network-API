@@ -37,15 +37,25 @@ module.exports = {
   },
   //Delete a thought
   deleteThought(req, res) {
-    Thought.findOneAndDelete({ _id: req.params.thoughtId }).then(
-      ((thought) =>
+    Thought.findOneAndDelete({ _id: req.params.thoughtId })
+      .then((thought) =>
         !thought
-          ? res.status(404).json({ message: "No thoughts with that ID exist." })
-          : res.json({ message: "Thought has been deleted" })).catch((err) =>
-        res.status(500).json(err)
+          ? res.status(404).json({ message: "Thought not found" })
+          : User.deleteMany({ _id: { $in: thought.users } })
       )
-    );
+      .then(() => res.json({ message: "Thought has been deleted" }))
+      .catch((err) => res.status(500).json(err));
   },
+
+  // ((thought) =>
+  // !thought
+  // ? res.status(404).json({ message: "No thoughts with that ID exist." })
+  //: res.json({ message: "Thought has been deleted" })).catch((err) =>
+  //  res.status(500).json(err)
+  // )
+  // );
+  //},
+
   //update a thought
   updateThought(req, res) {
     Thought.findOneAndUpdate(
