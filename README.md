@@ -55,10 +55,13 @@ The functionality can be tested with a tool such as Insomnia.
 
 ## Demonstration
 
-To view a video demonstration of the application's functionality click <a > here </a>
+To view a video demonstration of the application's functionality click <a href="https://drive.google.com/file/d/1qU6q-0TeV-Yde31Y4IGkFsSWoyOS1Z6C/view" > here </a>
 
-<img  />
-<img  />
+<img src="assets/get-all-users.png" />
+<img  src="assets/get-one-user.png"/>
+<img src="assets/create-a-thought.png" />
+<img  src="assets/get-all-thoughts.png"/>
+
 
 <br>
 
