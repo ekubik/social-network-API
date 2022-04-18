@@ -56,7 +56,7 @@ module.exports = {
         : Thought.findOneAndUpdate(
             { users: req.params.userId },
             { $pull: { users: req.params.userId } },
-            { runValidators: true, new: true }
+            { new: true }
           )
             .then((thought) =>
               res.json({
